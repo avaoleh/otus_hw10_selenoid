@@ -1,0 +1,9 @@
+selenium==4.11.2
+pytest==7.4.0
+requests==2.31.0
+black
+pylint==2.17.4
+python-dotenv==0.21.1
+mimesis
+allure-pytest==2.13.2
+pytest-xdist==3.3.1
