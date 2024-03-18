@@ -50,8 +50,6 @@ def test_authorisation(browser):
 @allure.label("owner", "OAO")
 @allure.description("Verify login process is successful")
 def test_login(browser):
-    page = UserPage(browser)
-    page.open()
     UserPage(browser).login(USER_EMAIL, USER_PASSWORD)
 
     attach.add_html(browser)

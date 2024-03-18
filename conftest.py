@@ -76,13 +76,13 @@ def browser(request):
         "browserName": browser,
         "browserVersion": version,
         "selenoid:options": {
-            "enableVNC": vnc,
+            # "enableVNC": vnc,
             "name": request.node.name,
             "screenResolution": "1080x1280",
             "enableVideo": video,
             "enableLog": logs,
             "timeZone": "Europe/Moscow",
-            "env": ["LANG=ru_RU.UTF-8", "LANGUAGE=ru:en", "LC_ALL=ru_RU.UTF-8"]
+            # "env": ["LANG=ru_RU.UTF-8", "LANGUAGE=ru:en", "LC_ALL=ru_RU.UTF-8"]
 
         },
         "acceptInsecureCerts": True,
@@ -111,13 +111,13 @@ def browser(request):
     def finalizer():
         video_url = f"http://{executor}:8080/video/{driver.session_id}.mp4"
 
-        if request.node.status == "failed":
-            if video:
-                allure.attach(
-                    body=wait_url_data(video_url),
-                    name="video_for_" + driver.session_id,
-                    attachment_type=allure.attachment_type.MP4,
-                )
+        # if request.node.status == "failed":
+        if video:
+            allure.attach(
+                body=wait_url_data(video_url),
+                name="video_for_" + driver.session_id,
+                attachment_type=allure.attachment_type.MP4,
+            )
 
         if video and wait_url_data(video_url):
             requests.delete(url=video_url)
